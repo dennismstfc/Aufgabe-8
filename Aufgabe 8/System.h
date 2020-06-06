@@ -4,10 +4,12 @@
 #include "Hoerbuch.h"
 #include "Artikel.h"
 #include "Person.h"
+#include <map>
 
 class System
 {
 public:
+	void fuegeKundeDemVerzeichnisZu(Person* kunde, int kundenID);
 	void erstelleNeuenKunde(std::vector<Person*>& neuerKunde);
 	void ausgelieheneArtikelAnsehen(std::vector<Artikel*>& gewuenschterArtikel, Person* kunde);
 	void gebeArtikelZurueck(std::vector<Artikel*>& gewuenschterArtikel, Person* kunde);
@@ -19,7 +21,8 @@ public:
 	void sucheArtikel(std::vector<Artikel*>& gewuenschterArtikel);
 	void run();
 
-
+private:
+	std::map <Person*, int> m_kundenverzeichnis;
 
 };
 

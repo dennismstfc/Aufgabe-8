@@ -1,10 +1,16 @@
 #include "System.h"
 
+void System::fuegeKundeDemVerzeichnisZu(Person* kunde, int kundenID)
+{
+	m_kundenverzeichnis[kunde] = kundenID;
+}
+
 void System::erstelleNeuenKunde(std::vector<Person*>& neuerKunde)
 {
 	int index = 0;
 	neuerKunde[index] = new Person;
 	neuerKunde[index]->erstelleKunde();
+	fuegeKundeDemVerzeichnis(neuerKunde[index], index);
 	index++;
 }
 
@@ -175,6 +181,8 @@ void System::sucheArtikel(std::vector<Artikel*>& gewuenschterArtikel) {
 	default: std::cout << "Invalide Eingabe!" << std::endl;
 	}
 }
+
+
 
 void System::run()
 {
