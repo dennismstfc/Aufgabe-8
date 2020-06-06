@@ -1,7 +1,6 @@
 #include <fstream>
 #include "System.h"
-#include <iomanip>
-
+#include <map>
 
 int main() {
 
@@ -10,10 +9,7 @@ int main() {
 	//std::ofstream protokolldatei;
 	//protokolldatei.open("Protokolldatei.txt");
 
-	auto t = std::time(nullptr);
-	auto tm = *localtime_s(&t);
-	std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << std::endl;
-
+	std::map <Person*, int> kundenverzeichnis;
 	
 
 
