@@ -12,6 +12,7 @@ void Buch::generiereDaten()
 	generiereTitel();
 	m_seitenanzahl = rand() % 1985 + 15;
 	m_anzahlVerfuegbareBuecher = rand() % 4 + 1;
+	m_erscheinungsjahr = rand() % 130 + 1900;
 }
 
 std::string Buch::generiereTitel()
@@ -31,7 +32,7 @@ std::string Buch::generiereTitel()
 
 void Buch::gebeDatenAus()
 {
-	std::cout << typeid(this).name() << " Titel: " << m_titel << "\t ID: " << m_ID << "\t Seitenanzahl: " << m_seitenanzahl << "\tAnzahl: " << m_anzahlVerfuegbareBuecher << std::endl;
+	std::cout << typeid(this).name() << " Titel: " << m_titel << "\t ID: " << m_ID << "\t Seitenanzahl: " << m_seitenanzahl << "\t Erscheinungsjahr: " << m_erscheinungsjahr << "\tAnzahl: " << m_anzahlVerfuegbareBuecher << std::endl;
 }
 
 bool Buch::istVerfuegbar()

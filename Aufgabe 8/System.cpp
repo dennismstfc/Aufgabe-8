@@ -7,11 +7,20 @@ void System::fuegeKundeDemVerzeichnisZu(Person* kunde, int kundenID)
 
 void System::erstelleNeuenKunde(std::vector<Person*>& neuerKunde)
 {
-	int index = 0;
-	neuerKunde[index] = new Person;
-	neuerKunde[index]->erstelleKunde();
-	fuegeKundeDemVerzeichnis(neuerKunde[index], index);
-	index++;
+	
+	neuerKunde[m_index] = new Person;
+	neuerKunde[m_index]->erstelleKunde();
+	fuegeKundeDemVerzeichnisZu(neuerKunde[m_index], m_index);
+	m_index++;
+}
+
+void System::gebeAlleKundenAus(std::map <Person*, int> kundenverzeichnis)
+{
+	std::cout << std::endl;
+	for (const auto& val : kundenverzeichnis) {
+		std::cout << "Name: "<< val.first->m_name << "\t ID:" << val.second << std::endl;
+	}
+	std::cout << std::endl << std::endl;
 }
 
 void System::ausgelieheneArtikelAnsehen(std::vector<Artikel*>& gewuenschterArtikel, Person* kunde) {
@@ -130,9 +139,17 @@ void System::leiheArtikelAus(std::vector<Artikel*>& gewuenschterArtikel, Person*
 
 int System::waehleKundeAus() {
 	int i;
+
+	gebeAlleKundenAus(m_kundenverzeichnis);
 	std::cout << "Welchen Kunden möchten Sie bearbeiten?  " << std::endl;
 	std::cin >> i;
 	std::cout << std::endl;
+
+	if (i > m_index || i < 0) {
+		std::cout << "Invalide Eingabe!" << std::endl;
+		return 0;
+	}
+	
 	return i;
 }
 
@@ -199,6 +216,7 @@ void System::run()
 		}
 	}
 
+	std::multiset<Artikel*, int> m_alleArtikelGeordnet;
 
 	std::vector<Person*> neuerKunde(100);
 	erstelleNeuenKunde(neuerKunde);
@@ -209,7 +227,8 @@ void System::run()
 		std::cout << "1: Alle Artikel ansehen   2: Ausgeliehene Artikel ansehen" << std::endl;
 		std::cout << "3: Artikel ausleihen      4: Artikel zurueckgeben" << std::endl;
 		std::cout << "5: Artikel suchen         6: Erstelle Kunde" << std::endl;
-		std::cout << "7: Kunde auswaehlen       9: Menue schliessen" << std::endl;
+		std::cout << "7: Kunde auswaehlen       8: Alle Kunden einsehen" << std::endl;
+		std::cout << "9: Menue schliessen" << std::endl;
 
 		std::cout << "Eingabe: ";
 		std::cin >> input;
@@ -225,6 +244,7 @@ void System::run()
 		case 5: sucheArtikel(m_alleArtikel); break;
 		case 6: erstelleNeuenKunde(neuerKunde); break;
 		case 7: indexKunde = waehleKundeAus(); break;
+		case 8: gebeAlleKundenAus(m_kundenverzeichnis); break;
 		case 9: break;
 		default: std::cout << "Invalide Eingabe! " << std::endl; break;
 		}

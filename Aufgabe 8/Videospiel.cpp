@@ -11,6 +11,7 @@ void Videospiel::generiereDaten()
 	generiereTitel();
 	m_speichergroeﬂe = rand() % 100 + 1;
 	m_anzahlVerfuegbareVideospiele = rand() % 4 + 1;
+	m_erscheinungsjahr = rand() % 30 + 1990;
 }
 
 std::string Videospiel::generiereTitel()
@@ -30,7 +31,7 @@ std::string Videospiel::generiereTitel()
 
 void Videospiel::gebeDatenAus()
 {
-	std::cout << typeid(this).name() << " Titel: " << m_titel << "\t ID: " << m_ID << "\t Speicherplatz: " << m_speichergroeﬂe << "\tAnzahl: " << m_anzahlVerfuegbareVideospiele << std::endl;
+	std::cout << typeid(this).name() << " Titel: " << m_titel << "\t ID: " << m_ID << "\t Speicherplatz: " << m_speichergroeﬂe << "\t Erscheinungsjahr: " << m_erscheinungsjahr  << "\tAnzahl: " << m_anzahlVerfuegbareVideospiele << std::endl;
 }
 
 bool Videospiel::istVerfuegbar()

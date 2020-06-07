@@ -11,6 +11,7 @@ void Hoerbuch::generiereDaten()
 	generiereTitel();
 	m_dauer = rand() % 100;
 	m_anzahlVerfuegbareHoerbuecher = rand() % 4 + 1;
+	m_erscheinungsjahr = rand() % 40 + 1980;
 }
 
 std::string Hoerbuch::generiereTitel()
@@ -30,7 +31,7 @@ std::string Hoerbuch::generiereTitel()
 
 void Hoerbuch::gebeDatenAus()
 {
-	std::cout << typeid(this).name() << " Titel: " << m_titel << "\t ID: " << m_ID << "\t Dauer: " << m_dauer << "\tAnzahl: " << m_anzahlVerfuegbareHoerbuecher << std::endl;
+	std::cout << typeid(this).name() << " Titel: " << m_titel << "\t ID: " << m_ID << "\t Dauer: " << m_dauer << "\t Erscheinungsjahr: " << m_erscheinungsjahr  << "\tAnzahl: " << m_anzahlVerfuegbareHoerbuecher << std::endl;
 }
 
 bool Hoerbuch::istVerfuegbar()

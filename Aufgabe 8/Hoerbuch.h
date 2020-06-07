@@ -21,5 +21,6 @@ private:
 	std::string m_titel;
 	int m_anzahlVerfuegbareHoerbuecher = 0;
 	bool m_verfuegbar = false;
+	int m_erscheinungsjahr = 0;
 };
 

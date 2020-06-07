@@ -23,5 +23,6 @@ private:
 	int m_seitenanzahl = 0;
 	int m_anzahlVerfuegbareBuecher = 0;
 	int m_verfuegbar = false;
+	int m_erscheinungsjahr = 0;
 };
 

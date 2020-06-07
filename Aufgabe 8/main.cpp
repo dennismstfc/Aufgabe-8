@@ -8,11 +8,6 @@ int main() {
 
 	//std::ofstream protokolldatei;
 	//protokolldatei.open("Protokolldatei.txt");
-
-
-	
-
-
 	//protokolldatei.close();
 
 	System bibliothek;

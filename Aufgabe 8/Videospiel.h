@@ -21,5 +21,6 @@ private:
 	std::string m_titel;
 	bool m_verfuegbar = false;
 	int m_anzahlVerfuegbareVideospiele = 0;
+	int m_erscheinungsjahr = 0;
 };
 
