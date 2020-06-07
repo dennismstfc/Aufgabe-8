@@ -7,7 +7,6 @@ void System::fuegeKundeDemVerzeichnisZu(Person* kunde, int kundenID)
 
 void System::erstelleNeuenKunde(std::vector<Person*>& neuerKunde)
 {
-	
 	neuerKunde[m_index] = new Person;
 	neuerKunde[m_index]->erstelleKunde();
 	fuegeKundeDemVerzeichnisZu(neuerKunde[m_index], m_index);
@@ -59,7 +58,6 @@ void System::gebeArtikelZurueck(std::vector<Artikel*>& gewuenschterArtikel, Pers
 		return;
 	}
 
-
 	if (kunde->m_anzahlAusgelieheneArtikel == 2) {
 		if (indexArtikelZurueck == 0) {
 			kunde->m_ausgelieheneArtikel[0] = kunde->m_ausgelieheneArtikel[1];
@@ -80,9 +78,7 @@ void System::gebeArtikelZurueck(std::vector<Artikel*>& gewuenschterArtikel, Pers
 		std::cout << "Dieser Artikel existiert nicht!" << std::endl;
 		return;
 	}
-
 	std::cout << "Der Kunde: " << kunde->m_name << " gab " << kunde->m_ausgelieheneArtikel[indexArtikelZurueck]->getTitel() << " zurück." << std::endl;
-
 }
 
 void System::alleArtikelAnsehen(std::vector<Artikel*>& gewuenschterArtikel) {
@@ -118,7 +114,6 @@ void System::leiheArtikelAus(std::vector<Artikel*>& gewuenschterArtikel, Person*
 				}
 			}
 		}
-
 	}
 	else {
 		std::cout << "Sie können nur einen Artikel ausleihen, wenn Sie Kunde sind." << std::endl;
@@ -199,8 +194,6 @@ void System::sucheArtikel(std::vector<Artikel*>& gewuenschterArtikel) {
 	}
 }
 
-
-
 void System::run()
 {
 	std::vector<Artikel*> m_alleArtikel(100);
@@ -229,13 +222,11 @@ void System::run()
 		std::cout << "5: Artikel suchen         6: Erstelle Kunde" << std::endl;
 		std::cout << "7: Kunde auswaehlen       8: Alle Kunden einsehen" << std::endl;
 		std::cout << "9: Menue schliessen" << std::endl;
-
-		std::cout << "Eingabe: ";
+				
+		std::cout << std::endl << "Eingabe: ";
 		std::cin >> input;
-
 		std::cout << std::endl;
-
-
+				
 		switch (input) {
 		case 1: alleArtikelAnsehen(m_alleArtikel); break;
 		case 2: ausgelieheneArtikelAnsehen(m_alleArtikel, neuerKunde[indexKunde]); break;
