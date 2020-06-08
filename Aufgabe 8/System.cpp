@@ -88,6 +88,22 @@ void System::alleArtikelAnsehen(std::vector<Artikel*>& gewuenschterArtikel) {
 	std::cout << std::endl;
 }
 
+void schreibeInProtkollDatei(Person* kunde, Artikel* ausgeliehenerArtikel) {
+	
+	std::fstream protokoll("Protokolldatei.txt", std::ios::out);
+
+	if (!protokoll) {
+		std::cout << "Datei konnte nicht geöffnet werden!" << std::endl;
+	}
+	else {
+		protokoll << "Der Kunde: " << kunde->m_name << " hat sich " << ausgeliehenerArtikel->getTitel() << " ausgeliehen." << std::endl;
+	}
+
+	if (protokoll.is_open()) {
+		protokoll.close();
+	}
+}
+
 void System::leiheArtikelAus(std::vector<Artikel*>& gewuenschterArtikel, Person* kunde) {
 
 	if (kunde->m_istKunde == true) {
@@ -105,6 +121,7 @@ void System::leiheArtikelAus(std::vector<Artikel*>& gewuenschterArtikel, Person*
 						kunde->m_anzahlAusgelieheneArtikel++;
 						std::cout << "Glueckwunsch Sie haben " << gewuenschterArtikel[i]->getTitel() << " ausgeliehen!" << std::endl;
 						std::cout << std::endl;
+						schreibeInProtkollDatei(kunde, gewuenschterArtikel[i]);
 						break;
 					}
 				}
@@ -214,7 +231,7 @@ void System::run()
 	std::vector<Person*> neuerKunde(100);
 	erstelleNeuenKunde(neuerKunde);
 	int indexKunde = 0;
-
+ 
 	int input;
 	do {
 		std::cout << "1: Alle Artikel ansehen   2: Ausgeliehene Artikel ansehen" << std::endl;
