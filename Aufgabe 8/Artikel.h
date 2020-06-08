@@ -19,7 +19,7 @@ public:
 	virtual void verringereStueckzahl() = 0;
 	virtual std::string getTitel() = 0;
 	virtual int getID() = 0;
-
+	virtual int getErscheinungsjahr() = 0;
 
 };
 

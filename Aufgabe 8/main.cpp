@@ -5,8 +5,6 @@ int main() {
 
 	srand(time(NULL));
 
-
-
 	System bibliothek;
 	bibliothek.run();
 

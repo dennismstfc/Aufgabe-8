@@ -13,6 +13,7 @@ public:
 	void verringereStueckzahl();
 	std::string getTitel();
 	int getID();
+	int getErscheinungsjahr();
 
 
 private:

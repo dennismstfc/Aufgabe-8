@@ -59,3 +59,8 @@ int Videospiel::getID()
 {
 	return m_ID;
 }
+
+int Videospiel::getErscheinungsjahr()
+{
+	return m_erscheinungsjahr;
+}

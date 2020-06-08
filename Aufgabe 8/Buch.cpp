@@ -61,3 +61,8 @@ std::string Buch::getTitel()
 {
 	return m_titel;
 }
+
+int Buch::getErscheinungsjahr()
+{
+	return m_erscheinungsjahr;
+}

@@ -16,6 +16,7 @@ public:
 	void verringereStueckzahl();
 	int getID();
 	std::string getTitel();
+	int getErscheinungsjahr();
 
 private:
 	int m_ID = 0;
@@ -24,5 +25,6 @@ private:
 	int m_anzahlVerfuegbareBuecher = 0;
 	int m_verfuegbar = false;
 	int m_erscheinungsjahr = 0;
+	
 };
 

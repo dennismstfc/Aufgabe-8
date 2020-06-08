@@ -1,5 +1,6 @@
 #include "System.h"
 
+  
 void System::fuegeKundeDemVerzeichnisZu(Person* kunde, int kundenID)
 {
 	m_kundenverzeichnis[kunde] = kundenID;
@@ -88,7 +89,7 @@ void System::alleArtikelAnsehen(std::vector<Artikel*>& gewuenschterArtikel) {
 	std::cout << std::endl;
 }
 
-void schreibeInProtkollDatei(Person* kunde, Artikel* ausgeliehenerArtikel) {
+void System::schreibeInProtkollDatei(Person* kunde, Artikel* ausgeliehenerArtikel) {
 	
 	std::fstream protokoll("Protokolldatei.txt", std::ios::out);
 
@@ -114,7 +115,7 @@ void System::leiheArtikelAus(std::vector<Artikel*>& gewuenschterArtikel, Person*
 
 		for (size_t i = 0; i < 100; i++) {
 			if (gewuenschterArtikel[i]->getID() == gesuchterArtikel) {
-				if (kunde->m_anzahlAusgelieheneArtikel < 2) {
+				if (kunde->m_anzahlAusgelieheneArtikel < 2 ) {
 					if (gewuenschterArtikel[i]->istVerfuegbar() == true) {
 						kunde->m_ausgelieheneArtikel[kunde->m_anzahlAusgelieheneArtikel] = gewuenschterArtikel[i];
 						gewuenschterArtikel[i]->verringereStueckzahl();
@@ -213,7 +214,9 @@ void System::sucheArtikel(std::vector<Artikel*>& gewuenschterArtikel) {
 
 void System::run()
 {
+	std::multiset<Artikel*, int> m_alleArtikelSortiertNachErscheinungsjahr;
 	std::vector<Artikel*> m_alleArtikel(100);
+
 	for (size_t i = 0; i < 100; i++) {
 		if (i < 30) {
 			m_alleArtikel[i] = new Videospiel(i);
@@ -224,9 +227,12 @@ void System::run()
 		else {
 			m_alleArtikel[i] = new Hoerbuch(i);
 		}
+
+		m_alleArtikelSortiertNachErscheinungsjahr = { m_alleArtikel[i], m_alleArtikel[i]->getErscheinungsjahr() };
 	}
 
-	std::multiset<Artikel*, int> m_alleArtikelGeordnet;
+
+	
 
 	std::vector<Person*> neuerKunde(100);
 	erstelleNeuenKunde(neuerKunde);

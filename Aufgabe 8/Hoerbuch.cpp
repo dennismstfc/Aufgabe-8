@@ -60,4 +60,9 @@ int Hoerbuch::getID()
 	return m_ID;
 }
 
+int Hoerbuch::getErscheinungsjahr()
+{
+	return m_erscheinungsjahr;
+}
+
 
