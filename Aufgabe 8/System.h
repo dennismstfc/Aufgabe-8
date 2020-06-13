@@ -17,7 +17,7 @@ public:
 	void gebeAlleKundenAus(std::map <Person*, int> kundenverzeichnis);
 	void ausgelieheneArtikelAnsehen(std::vector<Artikel*>& gewuenschterArtikel, Person* kunde);
 	void gebeArtikelZurueck(std::vector<Artikel*>& gewuenschterArtikel, Person* kunde);
-	void alleArtikelAnsehen(std::vector<Artikel*>& gewuenschterArtikel);
+	void alleArtikelAnsehen();
 	void schreibeInProtkollDatei(Person* kunde, Artikel* ausgeliehenerArtikel);
 	void leiheArtikelAus(std::vector<Artikel*>& gewuenschterArtikel, Person* kunde);
 	int waehleKundeAus();
@@ -29,7 +29,7 @@ public:
 private:
 
 	std::map <Person*, int> m_kundenverzeichnis;
-	
+	std::multiset<std::pair<int, std::string>>  m_alleArtikelSortiertNachErscheinungsjahr;
 	int m_index = 0;
 };
 

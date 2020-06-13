@@ -82,18 +82,21 @@ void System::gebeArtikelZurueck(std::vector<Artikel*>& gewuenschterArtikel, Pers
 	std::cout << "Der Kunde: " << kunde->m_name << " gab " << kunde->m_ausgelieheneArtikel[indexArtikelZurueck]->getTitel() << " zurück." << std::endl;
 }
 
-void System::alleArtikelAnsehen(std::vector<Artikel*>& gewuenschterArtikel) {
-	for (size_t i = 0; i < 100; i++) {
-		gewuenschterArtikel[i]->gebeDatenAus();
+void System::alleArtikelAnsehen() {
+	 
+	for (const auto& var : m_alleArtikelSortiertNachErscheinungsjahr) {
+		std::cout  << "Titel: " << var.second << "\tErscheinungsjahr: " << var.first << std::endl;
 	}
-	std::cout << std::endl;
+
+	std::cout << std::endl << std::endl;
 }
+
 
 void System::schreibeInProtkollDatei(Person* kunde, Artikel* ausgeliehenerArtikel) {
 	
-	std::fstream protokoll("Protokolldatei.txt", std::ios::out);
+	std::ofstream protokoll("Protokolldatei.txt", std::ios::app);
 
-	if (!protokoll) {
+	if (protokoll.fail()) {
 		std::cout << "Datei konnte nicht geöffnet werden!" << std::endl;
 	}
 	else {
@@ -151,8 +154,8 @@ void System::leiheArtikelAus(std::vector<Artikel*>& gewuenschterArtikel, Person*
 }
 
 int System::waehleKundeAus() {
+	
 	int i;
-
 	gebeAlleKundenAus(m_kundenverzeichnis);
 	std::cout << "Welchen Kunden möchten Sie bearbeiten?  " << std::endl;
 	std::cin >> i;
@@ -212,9 +215,11 @@ void System::sucheArtikel(std::vector<Artikel*>& gewuenschterArtikel) {
 	}
 }
 
+
 void System::run()
 {
-	std::multiset<Artikel*, int> m_alleArtikelSortiertNachErscheinungsjahr;
+	 
+	
 	std::vector<Artikel*> m_alleArtikel(100);
 
 	for (size_t i = 0; i < 100; i++) {
@@ -228,17 +233,20 @@ void System::run()
 			m_alleArtikel[i] = new Hoerbuch(i);
 		}
 
-		m_alleArtikelSortiertNachErscheinungsjahr = { m_alleArtikel[i], m_alleArtikel[i]->getErscheinungsjahr() };
+		std::string tmpTitel = m_alleArtikel[i]->getTitel();
+		int tmpErscheinungsjahr = m_alleArtikel[i]->getErscheinungsjahr();
+
+		std::pair<int, std::string> pair(tmpErscheinungsjahr, tmpTitel);
+		m_alleArtikelSortiertNachErscheinungsjahr.insert(pair);
 	}
-
-
-	
+		
 
 	std::vector<Person*> neuerKunde(100);
 	erstelleNeuenKunde(neuerKunde);
 	int indexKunde = 0;
  
 	int input;
+
 	do {
 		std::cout << "1: Alle Artikel ansehen   2: Ausgeliehene Artikel ansehen" << std::endl;
 		std::cout << "3: Artikel ausleihen      4: Artikel zurueckgeben" << std::endl;
@@ -251,7 +259,7 @@ void System::run()
 		std::cout << std::endl;
 				
 		switch (input) {
-		case 1: alleArtikelAnsehen(m_alleArtikel); break;
+		case 1: alleArtikelAnsehen(); break;
 		case 2: ausgelieheneArtikelAnsehen(m_alleArtikel, neuerKunde[indexKunde]); break;
 		case 3: leiheArtikelAus(m_alleArtikel, neuerKunde[indexKunde]); break;
 		case 4: gebeArtikelZurueck(m_alleArtikel, neuerKunde[indexKunde]); break;
